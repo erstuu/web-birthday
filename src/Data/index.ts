@@ -1,10 +1,10 @@
-import img1 from "../assets/IMG-1.jpg";
-import img2 from "../assets/IMG-2.jpg";
-import img3 from "../assets/IMG-3.jpg";
-import img4 from "../assets/IMG-4.jpg";
-import img5 from "../assets/IMG-5.jpg";
-import img6 from "../assets/IMG-6.jpg";
-import img7 from "../assets/IMG-7.jpg";
+const img1 = "/IMG-1.jpg";
+const img2 = "/IMG-2.jpg";
+const img3 = "/IMG-3.jpg";
+const img4 = "/IMG-4.jpg";
+const img5 = "/IMG-5.jpg";
+const img6 = "/IMG-6.jpg";
+const img7 = "/IMG-7.jpg";
 
 const wishes = [
   {
@@ -32,6 +32,16 @@ const wishes = [
     text: "Semoga kamu selalu sehat, kuat, dan tetap jadi kamu yang aku banggakan.",
   },
 ];
+
+const images = {
+  img1,
+  img2,
+  img3,
+  img4,
+  img5,
+  img6,
+  img7,
+};
 
 const topImages = [
   { src: img1, rotate: "rotate-[-8deg]" },
@@ -79,4 +89,4 @@ const bottomImages = [
 ];
 
 export default wishes;
-export { topImages, bottomImages };
+export { topImages, bottomImages, images };

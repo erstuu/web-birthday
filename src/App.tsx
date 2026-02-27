@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import mountainFlowers from "@/assets/mountain-flowers.jpg";
@@ -9,6 +9,8 @@ import Foorter from "./components/Footer";
 import Wishes from "./components/Wishes";
 import Message from "./components/Message";
 import Hero from "./components/Hero";
+import music from "/musik.mp3";
+import FloatingMusicButton from "./components/FloatingMusicButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,6 +22,33 @@ const App = () => {
   const imageRef = useRef<HTMLImageElement>(null);
   const wishesRef = useRef<HTMLDivElement>(null);
   const wishesHeadingRef = useRef<HTMLHeadingElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  // autoplay saat pertama load
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch(() => {
+          // browser block autoplay, user harus interact dulu
+          setIsPlaying(false);
+        });
+    }
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -117,6 +146,21 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-hidden">
+      {/*<audio ref={audioRef} src={music} loop />
+
+      <button
+        onClick={toggleMusic}
+        className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-pink-400 hover:bg-pink-500 text-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+      >
+        {isPlaying ? <Pause size={20} /> : <Music size={20} />}
+      </button>*/}
+
+      <FloatingMusicButton
+        audioRef={audioRef}
+        music={music}
+        isPlaying={isPlaying}
+        toggleMusic={toggleMusic}
+      />
       <FallingPetals />
 
       <Hero

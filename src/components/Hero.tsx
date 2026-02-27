@@ -47,7 +47,7 @@ export default function Hero({
           ref={titleRef}
           className="font-display text-2xl md:text-7xl lg:text-6xl font-bold text-pink-500 mb-6 leading-tight"
         >
-          Happy Birthday, My Beloved One!
+          Happy Birthday, Bee!
         </h1>
         <p
           ref={subtitleRef}
