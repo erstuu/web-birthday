@@ -1,7 +1,10 @@
-export default function Wishes({ wishesRef, wishes }) {
+export default function Wishes({ wishesRef, wishesHeadingRef, wishes }) {
   return (
     <section className="py-16 md:py-24 px-4 bg-cream/50">
-      <h2 className="font-display text-3xl md:text-4xl font-semibold text-center text-foreground mb-16">
+      <h2
+        ref={wishesHeadingRef}
+        className="font-display text-3xl md:text-4xl font-semibold text-center text-foreground mb-16"
+      >
         Doa & Harapan
       </h2>
       <div

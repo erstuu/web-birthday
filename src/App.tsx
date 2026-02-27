@@ -19,6 +19,7 @@ const App = () => {
   const messageRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const wishesRef = useRef<HTMLDivElement>(null);
+  const wishesHeadingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -83,6 +84,19 @@ const App = () => {
       }
 
       // Wishes section
+      if (wishesHeadingRef.current) {
+        gsap.from(wishesHeadingRef.current, {
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: wishesHeadingRef.current,
+            start: "top 80%",
+          },
+        });
+      }
+
       if (wishesRef.current) {
         gsap.from(wishesRef.current.children, {
           scale: 0.8,
@@ -91,7 +105,7 @@ const App = () => {
           duration: 0.8,
           ease: "back.out(1.7)",
           scrollTrigger: {
-            trigger: wishesRef.current,
+            trigger: wishesHeadingRef.current,
             start: "top 80%",
           },
         });
@@ -114,7 +128,11 @@ const App = () => {
       />
 
       <Message FlowerSVG={FlowerSVG} messageRef={messageRef} />
-      <Wishes wishesRef={wishesRef} wishes={wishes} />
+      <Wishes
+        wishesRef={wishesRef}
+        wishesHeadingRef={wishesHeadingRef}
+        wishes={wishes}
+      />
       <Foorter />
     </div>
   );
